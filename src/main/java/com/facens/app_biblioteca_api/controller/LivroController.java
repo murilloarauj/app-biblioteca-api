@@ -17,6 +17,7 @@ import com.facens.app_biblioteca_api.model.Livro;
 import com.facens.app_biblioteca_api.service.LivroService;
 
 
+
 @RestController // É a combinação do Controller com o ReponseBody, indica que a os métodos retornam diretamente no corpo da resposta. Com esse recurso criamos nossa API Resful.
 
 @RequestMapping("/livros") // É utilizado para mapear as URL's para métodos espeficificos
@@ -54,10 +55,10 @@ public class LivroController {
         return livroService.atualizar(id, livro);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void removerLivro(@PathVariable Long id) {
-        return livroService.deletar(id);
+        public void removerLivro(@PathVariable Long id) {
+        livroService.deletar(id);
     }
 
     @PutMapping("/{id}/emprestar")
