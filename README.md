@@ -1,210 +1,219 @@
-# Biblioteca API Aula05 - Spring Boot (Back-End)
+**📌📘🌐 Testes da API REST (Postman) | APP Biblioteca**
 
-🎯 Objetivo da atividade
-Desenvolver uma API REST de Biblioteca Universitária utilizando Spring Boot, aplicando arquitetura em camadas e integração com banco de dados em memória (H2).
+📒 Disciplina: Desenvolvimento Web Back-End
+🚩 Tema: Arquitetura REST com Spring Boot e Banco de Dados H2
+📦 Projeto: biblioteca-api
+👨‍🏫 Professor: Abimael de Oliveira
+📆 Prazo de entrega: 31/03/2026 – até 23:59
+📤 Formato de entrega: Repositório GitHub + evidências visuais (screenshots)
+⬆️ Nota: 0,5 (compõe nota AC1)
 
-O projeto simula o fluxo real de uma aplicação back-end moderna:
+ 
 
-Cliente → API → Banco de Dados → Resposta
+**🎯 Objetivo da atividade**
+Executar testes completos da API REST da Biblioteca, validando o funcionamento real do sistema por meio de requisições HTTP via Postman.
 
-Ao final da atividade, o(a) estudante deverá ser capaz de:
+A atividade simula um cenário profissional de backend:
 
-✔ criar e executar uma API Spring Boot no VS Code
-✔ organizar o projeto em arquitetura em camadas (controller, service, repository, model)
-✔ implementar operações CRUD
-✔ simular regras de negócio (empréstimo e devolução)
-✔ testar endpoints com ferramentas HTTP (Postman, Insomnia ou Thunder Client)
-✔ documentar a execução com evidências visuais padronizadas
+👉 testar → validar → evidenciar → versionar
 
-🧱 Escopo funcional obrigatório
-A API deverá permitir as seguintes operações:
+**🧱 Arquivos obrigatórios (desenvolvidos em sala)**
+O projeto deve conter:
 
-📘 Listar livros
-🔎 Buscar livro por ID
-➕ Cadastrar livro
-✏ Atualizar livro
-❌ Remover livro
-📚 Simular empréstimo de livro
-📥 Simular devolução de livro
-🧪 Expor endpoint de teste para validar que a API está ativa
-
-⚙️ Requisitos técnicos obrigatórios
-O projeto deverá utilizar:
-
-Java 17
-
-Spring Boot
-
-Maven (preferencialmente com Maven Wrapper)
-
-Spring Web
-
-Spring Data JPA
-
-H2 Database
-
-Lombok (opcional, porém recomendado)
-
-Arquitetura em camadas
-
-Estrutura mínima esperada do projeto:
-
-biblioteca-api
-│
-├── controller
-│   └── LivroController.java
-│
-├── service
-│   └── LivroService.java
-│
-├── repository
-│   └── LivroRepository.java
-│
-├── model
-│   └── Livro.java
-│
-└── BibliotecaApiApplication.java
-🚀 Guia de desenvolvimento (passo a passo)
-Etapa 1 — Preparação do ambiente
-Verifique a instalação do Java:
-
-java -version
-Versão esperada: Java 17
-
-Instalar:
-
-Visual Studio Code
-
-Extension Pack for Java
-
-Spring Boot Extension Pack
-
-Etapa 2 — Criação do projeto
-No VS Code:
-
-1️⃣ Abrir a paleta de comandos
-
-Ctrl + Shift + P
-2️⃣ Executar:
-
-Spring Initializr: Create a Maven Project
-Configurações do projeto:
-
-Language: Java
-Group: com.facens
-Artifact: biblioteca-api
-Packaging: Jar
-Java: 17
-
-Dependências:
-
-Spring Web
-
-Spring Data JPA
-
-H2 Database
-
-Lombok
-
-Spring Boot DevTools
-
-Etapa 3 — Configuração do banco H2
-No arquivo application.properties, configurar o banco em memória.
-
-Resultado esperado:
-
-✔ API executando com banco em memória
-✔ Console do banco disponível em:
-
-http://localhost:8080/h2-console
-Etapa 4 — Modelagem da entidade
-Criar a classe Livro contendo, no mínimo:
-
-id
-
-titulo
-
-autor
-
-emprestado
-
-dataEmprestimo (ou campo equivalente)
-
-Etapa 5 — Repositório
-Criar a interface:
-
-LivroRepository
-Estendendo:
-
-JpaRepository<Livro, Long>
-Etapa 6 — Camada de serviço
-Implementar LivroService contendo regras de negócio para:
-
-CRUD completo
-
-empréstimo de livro (não permitir emprestar livro já emprestado)
-
-devolução de livro (não permitir devolver livro não emprestado)
-
-Etapa 7 — Controller e endpoints
-Criar LivroController com mapeamento base:
-
-/livros
-Endpoints obrigatórios:
-
-GET    /livros
-GET    /livros/teste
-GET    /livros/{id}
-
-POST   /livros
-
-PUT    /livros/{id}
-
-DELETE /livros/{id}
-
-PUT    /livros/{id}/emprestar
-PUT    /livros/{id}/devolver
-Etapa 8 — Dados iniciais (recomendado)
-Criar arquivo:
-
+Livro.java
+LivroRepository.java
+LivroService.java
+LivroController.java
 data.sql
-Para inserir livros de exemplo automaticamente na inicialização da aplicação.
+Esses arquivos representam a arquitetura em camadas aplicada na API (model, repository, service, controller), conforme trabalhado no projeto.
 
-Etapa 9 — Execução da aplicação
-Executar o projeto utilizando Maven Wrapper.
+**🧪 CENÁRIO DE TESTES OBRIGATÓRIO (REMODELADO)**
+Agora não é mais teste solto — é execução controlada de fluxo completo.
 
-No terminal:
+Você deverá cumprir exatamente este roteiro:
 
-Windows:
+**🚀 ETAPA 1 — Validar API ativa**
+Requisição:
+GET /livros/teste
+📌 Objetivo:
+Confirmar que a API está funcionando
 
-.\mvnw.cmd spring-boot:run
-Linux / macOS:
+📸 Print obrigatório:
 
-./mvnw spring-boot:run
-Aplicação disponível em:
+URL + resposta
 
-http://localhost:8080
-Etapa 10 — Testes de cenário (obrigatórios)
-Executar e evidenciar os seguintes fluxos:
 
-📘 Consulta de catálogo
-
+**📚 ETAPA 2 — Consulta inicial (estado do sistema)**
+Requisição:
 GET /livros
-➕ Cadastro de livro
+📌 Objetivo:
+Ver os livros já existentes no H2 (vindos do data.sql)
 
+📸 Print obrigatório:
+
+Lista inicial de livros
+
+
+**➕ ETAPA 3 — Cadastro de 5 livros (OBRIGATÓRIO)**
+Você deve cadastrar 5 livros diferentes
+
+Requisição:
 POST /livros
-🔎 Consulta por ID
+Exemplo de body:
+{
+"titulo": "Livro Teste 1",
+"autor": "Aluno ADS"
+}
+📌 Regras:
 
-GET /livros/{id}
-✏ Atualização
+Não repetir títulos
+Fazer 5 requisições separadas
+📸 Prints obrigatórios:
 
+Pelo menos 2 requisições completas visíveis
+Resultado de cada criação
+IDs gerados
+
+
+**🔎 ETAPA 4 — Consulta geral após cadastros**
+Requisição:
+GET /livros
+📌 Objetivo:
+Validar que os 5 livros foram realmente inseridos
+
+📸 Print obrigatório:
+
+Lista contendo os novos livros
+
+
+**✏️ ETAPA 5 — Atualização de 2 livros (OBRIGATÓRIO)**
+Escolha 2 livros cadastrados por você
+
+Requisição:
 PUT /livros/{id}
-📚 Empréstimo
+Body:
+{
+"titulo": "Livro Atualizado",
+"autor": "Aluno ADS Atualizado",
+"emprestado": false
+}
+📌 Objetivo:
+Modificar dados do livro
 
+📸 Prints obrigatórios:
+
+Requisição PUT
+JSON enviado
+Resposta atualizada
+
+
+**📚 ETAPA 6 — Fluxo de empréstimo (1 livro)**
+Requisição:
 PUT /livros/{id}/emprestar
-📥 Devolução
+📌 Objetivo:
+Simular regra de negócio
 
+📸 Print obrigatório:
+
+Livro com emprestado = true
+dataEmprestimo preenchida
+
+
+**📥 ETAPA 7 — Fluxo de devolução**
+Requisição:
 PUT /livros/{id}/devolver
-❌ Remoção
+📌 Objetivo:
+Validar retorno ao estado original
 
+📸 Print obrigatório:
+
+Livro com emprestado = false
+
+
+**❌ ETAPA 8 — Remoção de 3 livros (OBRIGATÓRIO)**
+Você deve excluir 3 livros
+
+Requisição:
 DELETE /livros/{id}
+📌 Regras:
+
+Usar IDs reais
+Não excluir todos (deixe pelo menos 1)
+📸 Prints obrigatórios:
+
+Pelo menos 2 deletes visíveis
+Status da resposta
+
+
+**🔎 ETAPA 9 — Consulta final (estado pós-remoção)**
+Requisição:
+GET /livros
+📌 Objetivo:
+Validar que os livros foram removidos
+
+📸 Print obrigatório:
+
+Lista final atualizada
+
+
+**🧪 ETAPA 10 — Validação de erro (nível profissional)**
+Teste um ID inexistente:
+
+GET /livros/9999
+📌 Objetivo:
+Validar tratamento de erro
+
+📸 Print obrigatório:
+
+Retorno de erro (404)
+📸 Evidências obrigatórias (checklist)
+Você deve entregar prints contendo:
+
+✔ API funcionando (/teste)
+✔ Lista inicial
+✔ Cadastro dos livros
+✔ Lista após cadastro
+✔ Atualização
+✔ Empréstimo
+✔ Devolução
+✔ Exclusões
+✔ Lista final
+✔ Teste de erro
+
+
+
+**📂 Entrega final**
+O aluno deverá:
+
+1️⃣ Subir o projeto no GitHub
+Com os arquivos trabalhados em sala
+
+2️⃣ Atualizar o repositório com:
+código funcional
+commits representando evolução
+3️⃣ Inserir os prints no repositório
+Sugestão:
+
+/docs/screenshots/
+
+
+**✅ Critérios de avaliação**
+Será avaliado:
+
+funcionamento da API
+execução correta do roteiro de testes
+cumprimento das quantidades exigidas:
+5 cadastros
+2 atualizações
+3 exclusões
+coerência dos dados
+clareza dos prints
+organização do repositório GitHub
+
+
+**⚠️ Regras importantes**
+Atividade individual
+Entrega fora do prazo pode ter desconto
+Projeto deve estar funcional
+Prints devem ser reais (não simulados)
+Código sem testes evidenciados perde valor
